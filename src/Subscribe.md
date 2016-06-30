@@ -5,9 +5,9 @@
 老王很想买一张CD,但老板却告知他CD已经卖完了，要等下次进货的时候才会有，于事老王就留了老板号码，每天打一个电话过去问老板CD有没有到货，当然想要CD不只有老王一个， 还有老张，老李等......，他们也跟老王一样， 每天打一个电话过去问老板， 老板烦了， 于是就想到以后有人来问CD就将那人的电话留下，然后告知在CD到货的时候给他们打电话
 #### 发布－订阅模式的作用
 上面的栗子我们可以看到想买CD的人就相当于程序里的订阅者，老板就相当于程序里的发布者
-解决了什么 ？ 
+解决了什么 ？
 - 老王他们不会每天打电话来问了，顿时心情大好了  
-- 发布者与订阅者没有藕合了，以后有想买CD的只要把电话留下，在适当的时间，发布者只要通知这些消息订阅者就好了  
+- 发布者与订阅者没有藕合了，以后有想买CD的只要把电话留下，在适当的时间，发布者只要通知这些消息订阅者就好了    
 #### DOM事件
 实际上，我们经常用到的事件绑定就是发布订阅模式  
 ```
@@ -28,8 +28,8 @@ document.body.addEventListener('click',function(){
 除了DOM事件，我们还经常会实现一些自定义事件  
 我们一步一步来实现一个自定义事件    
 - 谁是发布者  
-- 给发布者添加一个缓存列表 
-- 发布者遍历缓存列表，依次触发存放的订阅者回调 
+- 给发布者添加一个缓存列表
+- 发布者遍历缓存列表，依次触发存放的订阅者回调
 ```
 var cdBoss = {} //cd店老板
 cdBoss.clientList = []; // 存放订阅者的回调
@@ -38,13 +38,203 @@ cdBoss.listen = function(fn){ // 增加订阅者
 }
 cdBoss.trigger = function(){ // 发布消息
   for(var i=0,fn; fn= this.clientList[i++];){
-    fn.apply(this,arguments) 
+    fn.apply(this,arguments)
   }
 }
 ```
+老王跟老李订阅一个想买cd的消息
+```
+cdBoss.listen(function(cdName){
+    console.log('老王订阅cd' + cdName) // 再见Jay
+})
+cdBoss.listen(function(cdName){
+    console.log('老李订阅cd' + cdName) // 再见Jay
+})
+```
+cd店老板给订阅者推送一个消息
+```
+cdBoss.trigger('再见Jay')
+```
+上面我们已经实现在最简易版的发布订阅，但其实是存在问题的，老王跟老李订阅的不同的cd ,但是cd店老板只要一发布，不管老王有没有相关的cd都会收到通知，这是我们不想看到的，那么我们有必要给订阅者增加一个标识（key）,这样订阅者就只会收到自己感兴趣的通知，接下来我们改写代码
+```
+var cdBoss = {} //cd店老板
+cdBoss.clientList = {}; // 存放订阅者的回调
+cdBoss.listen = function(key,fn){ // 增加订阅者
+  if(!this.clientList[key]){ // 如果没有此类订阅，就给该类订阅增加一个缓存列表
+    this.clientList[key] = []
+  }
+  this.clientList[key].push(fn); // 将订阅者的回调存进缓存列表
+}
+cdBoss.trigger = function(){ // 发布消息
+  var key = Array.prototype.shift.call(arguments), // 取出消息类型
+      fns = this.clientList[key] // 取出该类消息订阅集合
+
+  if(!fns || !fns.length) return; // 如果该类消息没有订阅直接返回
+
+  for(var i=0,fn; fn=fns[i++]){
+    fn.apply(this,arguments)
+  }
+}
+
+cdBoss.listen('Jay',function(cdName){
+    console.log('老王订阅cd' + cdName)
+})
+cdBoss.listen('JJ',function(cdName){
+    console.log('老李订阅cd' + cdName)
+})
+cdBoss.trigger('Jay','乱世情人');
+cdBoss.trigger('JJ','天下大乱');
+```
+经过我们的改写，老王再也不用担心收到不感兴趣的推送了
 #### 发布－订阅的通用实现
+几天过去了，老王还没有收到cd店老板消息，可老王迫不及待想要听新cd了,于是老王就想换一家店去问问，那么问题来了，另一家老板是不是又得重新跟老王解释一遍同样的问题，不过还好JS做为一门解释性语言，动态给对象添加职责再容易不过，我们再来改写一下代码
+```
+//先把发布，订阅的功能提取出来
+var event = {
+  clientList : {},
+  listen : function(key,fn){
+    if(!this.clientList[key]){ // 如果没有此类订阅，就给该类订阅增加一个缓存列表
+      this.clientList[key] = []
+    }
+    this.clientList[key].push(fn); // 将订阅者的回调存进缓存列表
+  },
+  trigger : function(){
+    var key = Array.prototype.shift.call(arguments), // 取出消息类型
+        fns = this.clientList[key] // 取出该类消息订阅集合
+
+    if(!fns || !fns.length) return; // 如果该类消息没有订阅直接返回
+
+    for(var i=0,fn; fn=fns[i++];){
+      fn.apply(this,arguments)
+    }
+  }
+}
+
+// 再定义一个function ,目的就是让所有对象都可以通过个function 来订阅，发布
+var installEvent = function(obj){
+    for(var i in event){
+      obj[i] = event[i]
+    }
+}
+
+// 再来试一试
+var cdBoss = {}; // 某一cd店老板
+installEvent(cdBoss);
+cdBoss.listen('Jay',function(cdName){
+    console.log('老王订阅cd' + cdName)
+})
+cdBoss.listen('JJ',function(cdName){
+    console.log('老李订阅cd' + cdName)
+})
+cdBoss.trigger('Jay','乱世情人');
+cdBoss.trigger('JJ','天下大乱');
+```
 #### 取消订阅的事件
+由于老王之前再多家cd店订阅过消息，虽然老李已经从美女老板手里买到cd ，但是隔壁几位王姓老板还是给他发推送消息，显然老李是不开心的，那能不能把订阅过的消息取消掉了，答案是肯定的，我们来看一下下面的代码
+```
+// 接着给event 添加一个remove 方法
+event.remove = function(key,fn){
+  var fns = this.clientList[key];
+  if(!fns) return; //如果该key 没有对应方法直接返回
+  if(!fn){
+    fns.length = 0 // 如果没有传入具体的回调，则清空该类下所有订阅消息
+  }else{
+    for(var l=fns.length-1;l>=0;l--){
+      var _fn = fns[l];
+      if(_fn == fn){
+        fns.splice(l,1) // 删除订阅者的回调函数
+      }
+    }
+  }  
+}
+
+cdBoss.listen('JJ',fn1=function(cdName){
+    console.log('老李订阅cd' + cdName) // 只有这个订阅会收到消息
+})
+cdBoss.listen('JJ',fn2=function(cdName){
+    console.log('老李订阅cd' + cdName)
+})
+cdBoss.remove('JJ',fn2)
+cdBoss.trigger('JJ','天下大乱');
+```
 #### 全局的发布－订阅对象
-#### 模块间的通信
-#### 必须先订阅再发布吗
-#### 全局事件的命名冲突
+老王忽然想起来自己还想要买另一张cd，但是现在这种模式下，老王还要去一次cd店跟老板订阅一下，显然这是一种资源浪费，如果我们有一种中介平台，我们不再去关心谁订阅，谁发布，岂不快哉，中介者存在的前提就是发布者跟订阅者都得知道这个生物的存在，我们用代码来实现一下
+```
+var Event = (function(){
+  var clientList = {},
+      listen,
+      trigger,
+      remove;
+  listen = function(key,fn){
+    if(!this.clientList[key]){ // 如果没有此类订阅，就给该类订阅增加一个缓存列表
+      this.clientList[key] = []
+    }
+    this.clientList[key].push(fn); // 将订阅者的回调存进缓存列表
+  }
+  trigger = function(){
+    var key = Array.prototype.shift.call(arguments), // 取出消息类型
+        fns = this.clientList[key] // 取出该类消息订阅集合
+
+    if(!fns || !fns.length) return; // 如果该类消息没有订阅直接返回
+
+    for(var i=0,fn; fn=fns[i++];){
+      fn.apply(this,arguments)
+    }
+  }
+  remove = function(){
+    var fns = this.clientList[key];
+    if(!fns) return; //如果该key 没有对应方法直接返回
+    if(!fn){
+      fns.length = 0 // 如果没有传入具体的回调，则清空该类下所有订阅消息
+    }else{
+      for(var l=fns.length-1;l>=0;l--){
+        var _fn = fns[l];
+        if(_fn == fn){
+          fns.splice(l,1) // 删除订阅者的回调函数
+        }
+      }
+    }
+  }
+
+  return {
+    listen : listen,
+    trigger : trigger,
+    remove : remove,
+    clientList : clientList
+  }
+})()
+
+Event.listen('Jay',function(cdName){
+  console.log('老王订阅cd'+cdName)
+});
+Event.trigger('Jay','乱世情人')
+
+```
+#### 小试牛刀－模块间的通信
+通过老王买cd，我们心里对发布订阅有了初步认识，下面我们用一个小例子通过发布订阅模式来实现模块间的通信，我们有父子两个模块，在子模块里点击一个按钮每次累加一个数，父模块随时更新到页面中
+```
+<!DOCTYPE html>
+<html lang="en">
+<body>
+	<div id="parent">0</div>
+	<div >
+		<button id="children">click me</button>
+	</div>
+</body>
+</html>
+<script>
+	var parent = (function(){
+		Event.listen('add',function(count){
+			document.getElementById('parent').innerHTML = count
+		})
+	})()
+	var children = (function(){
+		var count = 0;
+		document.getElementById('children').onclick = function(){
+			Event.trigger('add',count++)
+		}
+	})()
+</script>
+```
+#### 思考1－必须先订阅再发布吗
+#### 思考2-全局事件的命名冲突
