@@ -1,6 +1,6 @@
-### 命令模式
+# 命令模式
 命令模式是最简单跟优雅的模式之一，命令(command)指的是一个执行某些特定事情的指令
-### 应用场景
+## 应用场景
 有时候需要向某些对象发送请求， 但是并不知道请求的接收者是谁， 也不知道请求的操作是什么， 些时希望用一种低耦合的方式来设计程序，使得请求者和发送者之间的关系低耦合,下面我们来看一个例子   
 比如现在我们正在写一个大型用户界面程序，该用户界面上至少有数十个button按钮，因为项目比较复杂，所以我们同时让多人合作开发这个系统，A负责编写静态界面，B负责点击按钮的具体行为，这些行为都将被封装到对象里  
 - 思考
@@ -38,7 +38,7 @@ setCommand('button1',refreshCommand)
 
 通过上面的代码我们能看出来， 接收者跟执行者完全没有任何联系，通过了一个setCommand命令结合到了一块，这样发送者跟接收者就被耦合开了
 
-### JavaScript 中的命令模式
+## JavaScript 中的命令模式
 JavaScript将函数作为一等对象的语言，跟策略模式一样，命令模式也早已融入到了JavaScript语言当中，运算块不一定要封装在command.execute方法中， 也可以封装在普通函数中,函数作为一等对象，本身就可以被可以被四处传递，即使我们依然需要请求接收者，那也未必使用面向对象的方式，闭包也可以完成同样的功能
 ```
 var setCommand = function(button,fn){
@@ -62,7 +62,7 @@ RefreshMenuBarCommand.prototype.execute = function(){
 var refreshCommand = new RefreshMenuBarCommand(MenuBar);
 setCommand('button1',refreshCommand)
 ```
-### 撤消重做
+## 撤消重做
 命令模式的作用不仅是封装运算块，而且可以很方便的给命令对象增加撤消操作  
 比如我们有一个场景，下方我们用伪代码实现
 ```

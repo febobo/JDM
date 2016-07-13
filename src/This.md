@@ -1,6 +1,5 @@
-### this , call , apply
-### this
-#### this 的指向
+# this , call , apply
+## this 的指向
 JavaScript的指向总是指向一个对象，而具体指向哪个对象是在运行时基于函数的执行环境动态绑定的， 而非函数被声明时的环境  
 具体到实际应用中，this 的指向大致可以分为以下几种
 - 作为对象的方法调用
@@ -105,7 +104,7 @@ var getById = document.getElementById;
 getById('febobo') // dom Array
 // 上面我们通过apply成功修正了this 指向
 ```
-#### call种apply的区别
+## call种apply的区别
 它们的作用一模一样，唯一的区别仅在于传入的参数型式不同
 apply接收两个参数，第一个代表函数内的this的指向，第二个参数为一个带下标的集合（数组，类数组），apply方法把这个集合中的元素作用参数传递给调用的函数
 ```
@@ -134,12 +133,12 @@ var func = function(a,b,c){
 }
 func.call(null,1,2,3) // true
 ```
-#### call的apply的用途
+## call的apply的用途
 - 改变this指向(具体见上方代码)
 - Function.prototype.bind
 - 借用其它对象方法
 
-#### Function.prototype.bind
+## Function.prototype.bind
 高级浏览器都内置了Function.prototype.bind,用来指定函数内部的this指向,下面我们可以来模拟一个bind
 ```
 Function.prototype.bind = function(content){
@@ -156,7 +155,7 @@ var func = function(){
 }.bind(obj)
 func() // febobo
 ```
-#### 借用其它对象方法
+## 借用其它对象方法
 ```
 var a = {};
 Array.prototype.push.call(a,'febobo')
