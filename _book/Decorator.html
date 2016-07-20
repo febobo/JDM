@@ -1,0 +1,449 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <title>装饰者模式 · GitBook</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.0">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="Mediator.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="This.html">
+            
+                <a href="This.html">
+            
+                    
+                    理解this
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" >
+            
+                <span>
+            
+                    
+                    单例模式
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" >
+            
+                <span>
+            
+                    
+                    策略模式
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" >
+            
+                <span>
+            
+                    
+                    代理模式
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" >
+            
+                <span>
+            
+                    
+                    迭代器模式
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="Subscribe.html">
+            
+                <a href="Subscribe.html">
+            
+                    
+                    订阅模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="Command.html">
+            
+                <a href="Command.html">
+            
+                    
+                    命令模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" >
+            
+                <span>
+            
+                    
+                    组合模式
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" >
+            
+                <span>
+            
+                    
+                    模板方法模式
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" >
+            
+                <span>
+            
+                    
+                    享元模式
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="Chain.html">
+            
+                <a href="Chain.html">
+            
+                    
+                    职责链模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="Mediator.html">
+            
+                <a href="Mediator.html">
+            
+                    
+                    中介者模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.14" data-path="Decorator.html">
+            
+                <a href="Decorator.html">
+            
+                    
+                    装饰者模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15" >
+            
+                <span>
+            
+                    
+                    状态模式
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16" >
+            
+                <span>
+            
+                    
+                    适配器模式
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >装饰者模式</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="&#x88C5;&#x9970;&#x8005;&#x6A21;&#x5F0F;">&#x88C5;&#x9970;&#x8005;&#x6A21;&#x5F0F;</h1><p>&#x5728;&#x4F20;&#x7EDF;&#x7684;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x8BED;&#x8A00;&#x4E2D;&#xFF0C;&#x7ED9;&#x5BF9;&#x8C61;&#x6DFB;&#x52A0;&#x529F;&#x80FD;&#x5E38;&#x5E38;&#x4F7F;&#x7528;&#x7EE7;&#x627F;&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x4F46;&#x662F;&#x7EE7;&#x627F;&#x7684;&#x65B9;&#x5F0F;&#x5E76;&#x4E0D;&#x7075;&#x6D3B;&#xFF0C;&#x4E0B;&#x9762;&#x6211;&#x4EEC;&#x5217;&#x4E3E;&#x4E24;&#x6761;</p><ul><li>&#x4F1A;&#x5BFC;&#x81F4;&#x8D85;&#x7C7B;&#x4E0E;&#x5B50;&#x7C7B;&#x5B58;&#x5728;&#x5F3A;&#x8026;&#x5408;&#x6027;&#xFF0C;&#x5F53;&#x8D85;&#x7C7B;&#x6539;&#x53D8;&#x65F6;&#xFF0C;&#x5B50;&#x7C7B;&#x4E5F;&#x4F1A;&#x968F;&#x4E4B;&#x6539;&#x53D8;
+</li>
+<li>&#x8D85;&#x7C7B;&#x7684;&#x5185;&#x90E8;&#x7EC6;&#x8282;&#x5BF9;&#x5B50;&#x7C7B;&#x662F;&#x53EF;&#x89C1;&#x7684;&#xFF0C;&#x7EE7;&#x627F;&#x5E38;&#x5E38;&#x88AB;&#x8BA4;&#x4E3A;&#x7834;&#x574F;&#x4E86;&#x5C01;&#x88C5;&#x6027;
+</li></ul>
+<h1 id="&#x751F;&#x6D3B;&#x4E2D;&#x88C5;&#x9970;&#x8005;">&#x751F;&#x6D3B;&#x4E2D;&#x88C5;&#x9970;&#x8005;</h1><p>&#x6BD4;&#x5982;&#x6211;&#x4EEC;&#x73B0;&#x5728;&#x6709;4&#x4E2D;&#x578B;&#x53F7;&#x7684;&#x81EA;&#x884C;&#x8F66;&#xFF0C;&#x6211;&#x4EEC;&#x4E3A;&#x6BCF;&#x79CD;&#x81EA;&#x9009;&#x8F66;&#x90FD;&#x5B9A;&#x4E49;&#x4E86;&#x4E00;&#x5355;&#x72EC;&#x7684;&#x7C7B;&#xFF0C;&#x73B0;&#x5728;&#x8981;&#x7ED9;&#x6BCF;&#x79CD;&#x81EA;&#x884C;&#x8F66;&#x90FD;&#x88C5;&#x4E0A;&#x524D;&#x706F;&#xFF0C;&#x540E;&#x706F;&#xFF0C;&#x94C3;&#x94DB;&#xFF0C;&#x5982;&#x679C;&#x4F7F;&#x7528;&#x7EE7;&#x627F;&#x7684;&#x65B9;&#x5F0F;&#x6765;&#x7ED9;&#x6BCF;&#x79CD;&#x81EA;&#x884C;&#x8F66;&#x521B;&#x5EFA;&#x5B50;&#x7C7B;&#xFF0C;&#x5219;&#x9700;&#x8981;4*3=12&#x4E2A;&#x5B50;&#x7C7B;&#xFF0C;&#x4F46;&#x662F;&#x5982;&#x679C;&#x628A;&#x524D;&#x706F;&#xFF0C;&#x540E;&#x706F;&#xFF0C;&#x94C3;&#x94DB;&#x52A8;&#x6001;&#x7EC4;&#x5408;&#x5230;&#x81EA;&#x884C;&#x8F66;&#x4E0A;&#x9762;&#xFF0C;&#x5219;&#x53EA;&#x9700;&#x8981;&#x989D;&#x5916;&#x589E;&#x52A0;3&#x4E2A;&#x7C7B;
+&#x8FD9;&#x79CD;&#x7ED9;&#x5BF9;&#x8C61;&#x52A8;&#x6001;&#x7684;&#x589E;&#x52A0;&#x804C;&#x8D23;&#x7684;&#x65B9;&#x5F0F;&#x79F0;&#x4E3A;&#x88C5;&#x9970;&#x8005;&#xFF08;decorator&#xFF09;&#x6A21;&#x5F0F;,&#x88C5;&#x9970;&#x8005;&#x6A21;&#x5F0F;&#x80FD;&#x591F;&#x5728;&#x4E0D;&#x6539;&#x53D8;&#x5BF9;&#x8C61;&#x81EA;&#x8EAB;&#x7684;&#x57FA;&#x7840;&#x4E0A;&#xFF0C;&#x5728;&#x7A0B;&#x5E8F;&#x8FD0;&#x884C;&#x671F;&#x95F4;&#x7ED9;&#x5BF9;&#x8C61;&#x52A8;&#x6001;&#x6DFB;&#x52A0;&#x804C;&#x8D23;&#xFF0C;&#x8DDF;&#x7EE7;&#x627F;&#x60F3;&#x6BD4;&#xFF0C;&#x88C5;&#x9970;&#x8005;&#x662F;&#x4E00;&#x79CD;&#x66F4;&#x8F7B;&#x4FBF;&#x7075;&#x6D3B;&#x7684;&#x505A;&#x6CD5;</p><h1 id="&#x88C5;&#x9970;&#x51FD;&#x6570;">&#x88C5;&#x9970;&#x51FD;&#x6570;</h1><p>&#x5728;javascript&#x4E2D;&#xFF0C;&#x51E0;&#x4E4E;&#x4E00;&#x5207;&#x5BF9;&#x8C61;&#xFF0C;&#x5176;&#x4E2D;&#x51FD;&#x6570;&#x88AB;&#x79F0;&#x4E3A;&#x4E00;&#x7B49;&#x5BF9;&#x8C61;&#xFF0C;&#x5728;&#x5E73;&#x65F6;&#x5F00;&#x53D1;&#x5F0F;&#x4F5C;&#x4E2D;&#xFF0C; &#x5927;&#x90E8;&#x5206;&#x65F6;&#x95F4;&#x90FD;&#x5728;&#x548C;&#x51FD;&#x6570;&#x6253;&#x4EA4;&#x9053;&#xFF0C;&#x5728;javascript&#x4E2D;&#x53EF;&#x4EE5;&#x5F88;&#x65B9;&#x4FBF;&#x7684;&#x67D0;&#x4E2A;&#x5BF9;&#x8C61;&#x6269;&#x5C55;&#x5C5E;&#x6027;&#x548C;&#x65B9;&#x6CD5;&#xFF0C;&#x4F46;&#x5374;&#x5F88;&#x96BE;&#x5728;&#x4E0D;&#x6539;&#x52A8;&#x67D0;&#x4E2A;&#x51FD;&#x6570;&#x6E90;&#x4EE3;&#x7801;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x7ED9;&#x8BE5;&#x51FD;&#x6570;&#x6DFB;&#x52A0;&#x4E00;&#x4E9B;&#x989D;&#x5916;&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x5728;&#x4EE3;&#x7801;&#x7684;&#x8FD0;&#x884C;&#x671F;&#x95F4;&#x6211;&#x4EEC;&#x5F88;&#x96BE;&#x5207;&#x5165;&#x67D0;&#x4E2A;&#x51FD;&#x6570;&#x7684;&#x8FD0;&#x884C;&#x73AF;&#x5883;</p><p>&#x8981;&#x60F3;&#x4E3A;&#x51FD;&#x6570;&#x6DFB;&#x52A0;&#x4E00;&#x4E9B;&#x529F;&#x80FD;&#xFF0C;&#x6700;&#x7B80;&#x5355;&#x7684;&#x65B9;&#x5F0F;&#x5C31;&#x662F;&#x76F4;&#x63A5;&#x6539;&#x5199;&#x8BE5;&#x51FD;&#x6570;&#xFF0C;&#x4F46;&#x8FD9;&#x4E5F;&#x662F;&#x6700;&#x5DEE;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x76F4;&#x63A5;&#x8FDD;&#x53CD;&#x4E86;&#x5F00;&#x653E;&#xFF0D;&#x5C01;&#x95ED;&#x539F;&#x5219;</p><pre><code>var a = function(){
+  console.log(1)
+}
+
+// &#x6539;&#x5199;&#x6210;
+var a = function(){
+  console.log(1)
+  console.log(2)
+}</code></pre>
+<p>&#x5F88;&#x591A;&#x65F6;&#x95F4;&#x6211;&#x4EEC;&#x4E0D;&#x60F3;&#x53BB;&#x6539;&#x53D8;&#x539F;&#x51FD;&#x6570;&#xFF0C;&#x56E0;&#x4E3A;&#x6211;&#x4EEC;&#x4E0D;&#x6E05;&#x695A;&#x81EA;&#x5DF1;&#x7684;&#x6539;&#x52A8;&#x4F1A;&#x4E3A;&#x539F;&#x51FD;&#x6570;&#x5E26;&#x6765;&#x4EC0;&#x4E48;&#x6837;&#x7684;&#x540E;&#x679C;&#xFF0C;&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x4E00;&#x4E2A;&#x5373;&#x4E0D;&#x6539;&#x53D8;&#x539F;&#x51FD;&#x6570;&#xFF0C;&#x53C8;&#x80FD;&#x52A8;&#x6001;&#x7ED9;&#x51FD;&#x6570;&#x6DFB;&#x52A0;&#x804C;&#x8D23;&#x7684;&#x65B9;&#x6CD5;</p><pre><code>var a = function(){
+  console.log(1)
+}
+var _a = a;
+a = function(){
+  _a();
+  console.log(2)
+}
+a()</code></pre>
+<p>&#x6211;&#x4EEC;&#x4FDD;&#x5B58;&#x539F;&#x5F15;&#x7528;&#x7684;&#x65B9;&#x5F0F;&#x5C31;&#x53EF;&#x4EE5;&#x6539;&#x5199;&#x67D0;&#x4E2A;&#x51FD;&#x6570;&#xFF0C;&#x8FD9;&#x5176;&#x5B9E;&#x662F;&#x5F00;&#x53D1;&#x4E2D;&#x5F88;&#x5E38;&#x89C1;&#x7684;&#x4E00;&#x79CD;&#x65B9;&#x5F0F;&#xFF0C; &#x6BD4;&#x5982;&#x6211;&#x4EEC;&#x60F3;&#x5F88;window.onload &#x6DFB;&#x52A0;&#x4E00;&#x4E2A;&#x4E8B;&#x4EF6;&#xFF0C;&#x4F46;&#x662F;&#x6211;&#x4EEC;&#x53C8;&#x4E0D;&#x786E;&#x5B9A;&#x522B;&#x4EBA;&#x662F;&#x5426;&#x4E5F;&#x7ED1;&#x5B9A;onload &#xFF0C;&#x6240;&#x4EE5;&#x4E3A;&#x4E86;&#x907F;&#x514D;&#x8986;&#x76D6;&#x6389;&#x5176;&#x5B83;&#x4EBA;&#x5199;&#x7684;&#xFF0C;&#x6211;&#x4EEC;&#x4E00;&#x822C;&#x4F1A;&#x5148;&#x4FDD;&#x5B58;onload &#x7684;&#x5F15;&#x7528;&#xFF0C;&#x628A;&#x5B83;&#x653E;&#x5165;&#x5230;&#x65B0;&#x7684;onload &#x91CC;&#x6267;&#x884C;</p><p>&#x8FD9;&#x6837;&#x7684;&#x4EE3;&#x7801;&#x663E;&#x793A;&#x662F;&#x7B26;&#x5408;&#x5F00;&#x653E;&#xFF0D;&#x5C01;&#x95ED;&#x539F;&#x5219;&#x7684;&#xFF0C;&#x4F46;&#x662F;&#x8FD9;&#x79CD;&#x65B9;&#x5F0F;&#x8FD8;&#x662F;&#x6709;&#x5176;&#x5B83;&#x95EE;&#x9898;&#xFF0C;&#x5982;</p><ul><li>&#x5FC5;&#x987B;&#x7EF4;&#x62A4;&#x4E2D;&#x95F4;&#x53D8;&#x91CF;&#xFF08;&#x5982;&#x4E0A;&#x9762;&#x7684;_a&#xFF09;&#xFF0C;&#x867D;&#x7136;&#x770B;&#x8D77;&#x6765;&#x4E0D;&#x592A;&#x8D77;&#x773C;&#xFF0C;&#x4F46;&#x5982;&#x679C;&#x51FD;&#x6570;&#x7684;&#x88C5;&#x9970;&#x94FE;&#x8F83;&#x957F;&#xFF0C;&#x6216;&#x8005;&#x9700;&#x8981;&#x88C5;&#x9970;&#x7684;&#x51FD;&#x6570;&#x8F83;&#x591A;&#xFF0C;&#x8FD9;&#x4E9B;&#x4E2D;&#x95F4;&#x53D8;&#x91CF;&#x4E5F;&#x4F1A;&#x8D8A;&#x6765;&#x8D8A;&#x591A;
+</li>
+<li>this &#x83AB;&#x540D;&#x4E22;&#x5931;
+</li></ul>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="Mediator.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 中介者模式">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"装饰者模式","level":"1.14","depth":1,"next":{"title":"状态模式","level":"1.15","depth":1,"ref":"","articles":[]},"previous":{"title":"中介者模式","level":"1.13","depth":1,"path":"Mediator.md","ref":"Mediator.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Decorator.md","mtime":"2016-07-18T16:54:56.000Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-07-20T16:20:11.000Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
